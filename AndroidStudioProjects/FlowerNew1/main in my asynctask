@@ -1,0 +1,72 @@
+
+//first is params , progress, Resutl
+private class MyTask extends AsyncTask<String,String,String>
+{
+
+    /**after doing in background  the return type of doInBackground
+     *
+    */
+    @Override
+    protected void onPostExecute(String s) {
+        updateDisplay(s);
+        tasks.remove(this);
+        if (tasks.size()==0)
+        {
+            Ph.setVisibility(View.INVISIBLE);
+
+        }
+
+    }
+
+    //that onPreExecute() will be run before doin
+    @Override
+    protected void onPreExecute() {
+        updateDisplay("Starting task");
+
+        if (tasks.size()==0)
+        {
+            Ph.setVisibility(View.VISIBLE);
+
+        }
+
+        tasks.add(this);
+        }
+
+    // reutrn datatype of resutl  doInBackground(dataType of params)
+    @Override
+    protected String doInBackground(String... strings) {
+        {
+    String content=    HttpManager.getData(strings[0]);
+
+
+
+
+                 /*  for (int i=0;i<strings.length;i++){
+
+          //it's take the secound part of value = progress
+            //publishProgress send the data to onProgressUpdate
+
+
+            try {
+                Thread.sleep(1000);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            publishProgress(" working with "+strings[i]);
+*/}
+        return "Task complete";
+        return content;
+    }
+//this onProgressUpdate() take the value from  publishProgress()
+    @Override
+    protected void onProgressUpdate(String... values) {
+
+        for (int i=0;i<values.length;i++) {
+            updateDisplay(values[i]);
+        }
+    }
+}
+}
+

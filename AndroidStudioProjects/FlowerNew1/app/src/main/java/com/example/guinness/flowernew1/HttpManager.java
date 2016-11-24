@@ -1,5 +1,6 @@
 package com.example.guinness.flowernew1;
 
+import android.net.http.AndroidHttpClient;
 import android.util.Base64;
 import android.util.Log;
 
@@ -8,6 +9,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.util.EntityUtils;
 
 /**
  * Created by guinness on 21/11/16.
@@ -16,9 +20,6 @@ import java.net.URL;
 public class HttpManager {
 //    URI= uniform resource idenfied
 //    that identifid the location on feed on web that you want call
-
-
-
     public static String getData(String uri) {
 
         BufferedReader reader = null;
@@ -102,3 +103,25 @@ public class HttpManager {
 
     }
 }
+
+/**
+ public static String getData(String uri) {
+
+ AndroidHttpClient client = AndroidHttpClient.newInstance("AndroidAgent");
+ HttpGet request = new HttpGet(uri);
+ HttpResponse response;
+
+ try {
+ response = client.execute(request);
+ return EntityUtils.toString(response.getEntity());
+ } catch (Exception e) {
+ e.printStackTrace();
+ return null;
+ } finally {
+ client.close();
+ }
+
+ }
+
+ }*/
+

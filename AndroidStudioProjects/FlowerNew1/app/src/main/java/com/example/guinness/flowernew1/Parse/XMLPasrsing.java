@@ -13,7 +13,7 @@ import java.util.List;
  * Created by guinness on 21/11/16.
  */
 
-public class Parsing {
+public class XMLPasrsing {
     public static List<Flower> parseFeed(String content) {
 
         try {
@@ -92,4 +92,4 @@ public class Parsing {
 
 
 
-}
+
