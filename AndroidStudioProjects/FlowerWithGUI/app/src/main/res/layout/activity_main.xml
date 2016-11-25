@@ -6,33 +6,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.guinness.flowerwithgui.MainActivity">
-
+<RelativeLayout
+    android:id="@+id/layout"
+    android:layout_width="368dp"
+    android:layout_height="495dp"
+    tools:layout_editor_absoluteY="8dp"
+    tools:layout_editor_absoluteX="8dp">
     <Button
+        android:layout_below="@+id/layout"
         android:id="@+id/XMLPARSING"
         android:text="@string/Xmlparsing"
-        android:layout_width="368dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="XMLparssing"
         tools:layout_editor_absoluteY="405dp"
         tools:layout_editor_absoluteX="8dp" />
     <Button
+        android:layout_below="@+id/XMLPARSING"
         android:id="@+id/JasonParssing"
         android:text="@string/JASONPARSING"
-        android:layout_width="360dp"
-        android:layout_height="61dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="Jasonparssing"
         tools:layout_editor_absoluteY="35dp"
         tools:layout_editor_absoluteX="8dp" />
     <Button
+        android:layout_below="@+id/JasonParssing"
         android:onClick="jasonParssingSecure"
         android:id="@+id/JasonParssingSecure"
         android:text="@string/JASONParsingSecure"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteY="200dp"
         android:layout_marginEnd="16dp"
+
         app:layout_constraintRight_toRightOf="parent" />
 
-
+</RelativeLayout>
 </android.support.constraint.ConstraintLayout>
 

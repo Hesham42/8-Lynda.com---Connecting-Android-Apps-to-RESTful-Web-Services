@@ -24,4 +24,14 @@ public void XMLparssing (View view)
     Intent XML=new Intent(this,ParsingBYXML.class);
     startActivity(XML);
 }
+public void Jasonparssing (View view)
+{
+    Intent Jason=new Intent(this,ParsingBYJASON.class);
+    startActivity(Jason);
+}
+public void jasonParssingSecure (View view)
+{
+    Intent JasonSecure=new Intent(this,ParsingBYJasonSECURE.class);
+    startActivity(JasonSecure);
+}
 }
