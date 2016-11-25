@@ -1,5 +1,7 @@
 package com.example.guinness.flowerwithgui.Model;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by guinness on 22/11/16.
  */
@@ -11,6 +13,15 @@ public class Flower {
     private String instrutions;
     private double price;
     private String photo;
+    private Bitmap bitmap;
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
 
     public int getProudctID() {
         return proudctID;

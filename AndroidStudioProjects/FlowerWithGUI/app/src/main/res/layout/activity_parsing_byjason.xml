@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_parsing_byjason"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.guinness.flowerwithgui.ParsingBYJASON">
+
     <RelativeLayout
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteY="0dp"
         tools:layout_editor_absoluteX="8dp">
-        <TextView
-            android:id="@+id/textJASONPARSING"
+
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+        <Button
+            android:id="@+id/ButtonParssingJason"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:hint="@string/JASONPARSING"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="8dp" />
-<Button
-    android:id="@+id/ButtonParssingJason"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/JASONPARSING"
-    android:layout_below="@+id/textJASONPARSING"
-    android:onClick="CalassJasonParssing"/>
+            android:text="@string/JASONPARSING"
+            android:onClick="CalassJasonParssing" />
+
         <ProgressBar
             android:layout_below="@+id/ButtonParssingJason"
             android:id="@+id/progressBar"

@@ -1,15 +1,13 @@
 package com.example.guinness.flowerwithgui;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guinness.flowerwithgui.Model.Flower;
@@ -19,22 +17,23 @@ import com.example.guinness.flowerwithgui.http.HttpManger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParsingBYJasonSECURE extends AppCompatActivity {
+public class ParsingBYJasonSECURE extends ListActivity {
+
+    public static final String PHOTOS_BASE_URL =
+            "http://services.hanselandpetal.com/photos/";
     private static String UserName = "feeduser";
     private static String Password = "feedpassword";
-    String Url="http://services.hanselandpetal.com/secure/flowers.json";
-    TextView output;
+    String Url = "http://services.hanselandpetal.com/secure/flowers.json";
     ProgressBar Pb;
     //this arrayList to all asynctask
     List<MyTask> tasks;
 
     List<Flower> flowerList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parsing_byjason_secure);
-        output=(TextView)findViewById(R.id.JASONParsingSecure);
-        output.setMovementMethod(new ScrollingMovementMethod());
         Pb = (ProgressBar) findViewById(R.id.progressBar2);
         Pb.setVisibility(View.INVISIBLE);
         //declaration of the task to know how many tasks doing
@@ -63,23 +62,9 @@ public class ParsingBYJasonSECURE extends AppCompatActivity {
     }
 
     protected void updateDisplay() {
-        if (flowerList != null) {
-
-            for (Flower flower : flowerList) {
-
-                output.append("all information you need to know " + flower.getName() + "\n");
-                output.append("flower Name   " + flower.getName() + "\n");
-                output.append("flower id       " + flower.getProudctID() + "\n");
-                output.append("flower category  " + flower.getCatagory() + "\n");
-                output.append("flower insertuction  " + flower.getInstrutions() + "\n");
-                output.append("flower photo           " + flower.getPhoto() + "\n");
-                output.append("flower price           " + flower.getPrice() + "\n");
-                output.append("all information you need to know ");
-
-
-            }
-
-        }
+//user FlowerAdapter to display data
+        FlowerAdapter adapter = new FlowerAdapter(this, R.layout.itemtool, flowerList);
+        setListAdapter(adapter);
     }
 
 
@@ -93,43 +78,59 @@ public class ParsingBYJasonSECURE extends AppCompatActivity {
         }
 
     }
-    private class MyTask extends AsyncTask<String,String,String> {
+
+    private class MyTask extends AsyncTask<String, String, List<Flower>> {
 
 
         @Override
         protected void onPreExecute() {
-            if(tasks.size()==0)
-            {
+            if (tasks.size() == 0) {
                 Pb.setVisibility(View.VISIBLE);
             }
             tasks.add(this);
         }
 
         @Override
-        protected String doInBackground(String... strings) {
-            String content = HttpManger.getData(strings[0],UserName,Password);
-            return content;
+        protected List<Flower> doInBackground(String... strings) {
+            String content = HttpManger.getData(strings[0], UserName, Password);
+            flowerList = JASONPasrses.parseFeed(content);
+
+//            for (Flower flower : flowerList) {
+//                try {
+//                    String imageUrl = PHOTOS_BASE_URL + flower.getPhoto();
+//                    InputStream in = (InputStream) new URL(imageUrl).getContent();
+//                    Bitmap bitmap = BitmapFactory.decodeStream(in);
+//                    flower.setBitmap(bitmap);
+//                    in.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+            return flowerList;
         }
 
 
-
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(List<Flower> result) {
             tasks.remove(this);
-            if (tasks.size()==0)
-            {
+            if (tasks.size() == 0) {
                 Pb.setVisibility(View.INVISIBLE);
             }
-            if (result==null)
-            {
-                Toast.makeText(ParsingBYJasonSECURE.this,"Can't connect with the wepservice ",Toast.LENGTH_LONG).show();
+            if (result == null) {
+                Toast.makeText(ParsingBYJasonSECURE.this, "Can't connect with the wepservice ", Toast.LENGTH_LONG).show();
                 return;
             }
-            flowerList= JASONPasrses.parseFeed(result);
+            flowerList = result;
             updateDisplay();
         }
 
     }
 }
+
+
+
+
+
 
 

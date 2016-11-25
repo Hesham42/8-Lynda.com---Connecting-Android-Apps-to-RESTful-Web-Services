@@ -3,4 +3,6 @@
     <string name="Xmlparsing">XMLPARSING</string>
     <string name="JASONPARSING">JasonParse</string>
     <string name="JASONParsingSecure">Jason PArssing Secure</string>
+    <string name="GetOldFassion">Get Old Fassion</string>
+    <string name="flower_name_placeholder">Flower name</string>
 </resources>

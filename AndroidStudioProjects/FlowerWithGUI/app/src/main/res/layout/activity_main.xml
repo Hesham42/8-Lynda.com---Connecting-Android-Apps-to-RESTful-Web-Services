@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:onClick="XMLparssing"
         tools:layout_editor_absoluteY="405dp"
-        tools:layout_editor_absoluteX="8dp" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:ignore="NotSibling" />
     <Button
         android:layout_below="@+id/XMLPARSING"
         android:id="@+id/JasonParssing"
@@ -38,9 +39,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteY="200dp"
-        android:layout_marginEnd="16dp"
 
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_alignParentEnd="true" />
+    <!--<Button-->
+        <!--android:id="@+id/GetOldFassion"-->
+        <!--android:layout_below="@+id/JasonParssingSecure"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/GetOldFassion"-->
+        <!--/>-->
 
 </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
