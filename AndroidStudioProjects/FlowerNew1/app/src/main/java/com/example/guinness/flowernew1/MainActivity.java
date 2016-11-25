@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_do_task) {
 
+
             if (isOnline()) {
 //   http://services.hanselandpetal.com/feeds/
                 //for any code start this link
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(this, "network isn't available", Toast.LENGTH_LONG).show();
             }
-
         }
 
         return super.onOptionsItemSelected(item);
